@@ -1,0 +1,52 @@
+package api.tests;
+
+import api.helpers.ApiHelper;
+import api.models.BookingRequest;
+import api.models.BookingResponse;
+import api.testdata.BookingTestData;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+public class BookingApiCRUDTest {
+    private final ApiHelper apiHelper = new ApiHelper();
+
+    @Test
+    @DisplayName("Verify user can create booking")
+    public void сreateBookingTest() {
+        BookingRequest bookingRequest = BookingTestData.defaultBooking();
+        BookingResponse bookingResponse = apiHelper.createBooking(bookingRequest);
+        assertThat(bookingResponse.getBookingid()).isNotNull();
+        assertThat(bookingResponse.getBooking()).usingRecursiveComparison().isEqualTo(bookingRequest);
+    }
+
+    @Test
+    @DisplayName("Verify user can retrieve booking by id")
+    public void getBookingByIdTest() {
+        BookingRequest bookingToCreate = BookingTestData.defaultBooking();
+        BookingResponse createdBookingResponse = apiHelper.createBooking(bookingToCreate);
+        BookingRequest retrievedBooking = apiHelper.getBookingById(createdBookingResponse.getBookingid());
+        assertThat(retrievedBooking).usingRecursiveComparison().isEqualTo(bookingToCreate);
+    }
+
+    @Test
+    @DisplayName("Verify user can update booking by id")
+    public void updateBookingByIdTest() {
+        BookingRequest bookingToCreate = BookingTestData.defaultBooking();
+        BookingResponse createdBookingResponse = apiHelper.createBooking(bookingToCreate);
+        BookingRequest bookingToUpdate = BookingTestData.updatedBooking();
+        BookingRequest updatedBooking = apiHelper.updateBooking(createdBookingResponse.getBookingid(), bookingToUpdate);
+        assertThat(updatedBooking).usingRecursiveComparison().isEqualTo(bookingToUpdate);
+    }
+
+    @Test
+    @DisplayName("Verify user can delete booking by id")
+    public void deleteBookingByIdTest() {
+        BookingRequest bookingToCreate = BookingTestData.defaultBooking();
+        BookingResponse createdBookingResponse = apiHelper.createBooking(bookingToCreate);
+        int bookingId = createdBookingResponse.getBookingid();
+        apiHelper.deleteBooking(bookingId);
+        apiHelper.verifyBookingNotFound(bookingId);
+    }
+}
