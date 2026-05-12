@@ -2,6 +2,7 @@ package api.helpers;
 
 import api.constants.Endpoints;
 import api.models.*;
+import io.restassured.response.Response;
 
 import java.util.List;
 
@@ -117,6 +118,29 @@ public class ApiHelper extends BaseHelper {
                 .extract()
                 .jsonPath()
                 .getList("", BookingIdResponse.class);
+    }
+
+    public Response updateBookingWithoutToken(int id, BookingRequest bookingRequest) {
+        return given().spec(requestSpecification)
+                .pathParam("id", id)
+                .body(bookingRequest)
+                .when()
+                .put(Endpoints.BOOKING_BY_ID_ENDPOINT)
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    public Response getNonExistentBooking(int id) {
+        return given().spec(requestSpecification)
+                .pathParam("id", id)
+                .when()
+                .get(Endpoints.BOOKING_BY_ID_ENDPOINT)
+                .then()
+                .log().all()
+                .extract()
+                .response();
     }
 
     private String getAuthToken() {
