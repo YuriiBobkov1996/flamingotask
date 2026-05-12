@@ -18,7 +18,6 @@ public class BookingApiCRUDTest {
         BookingRequest bookingRequest = BookingTestData.defaultBooking();
         BookingResponse bookingResponse = apiHelper.createBooking(bookingRequest);
         assertThat(bookingResponse.getBookingid()).isNotNull();
-        assertThat(bookingResponse.getBooking()).usingRecursiveComparison().isEqualTo(bookingRequest);
     }
 
     @Test

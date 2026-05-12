@@ -11,8 +11,7 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
-import static org.apache.http.HttpStatus.SC_FORBIDDEN;
-import static org.apache.http.HttpStatus.SC_NOT_FOUND;
+import static org.apache.http.HttpStatus.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class NegativeAPITest {
@@ -31,7 +30,7 @@ public class NegativeAPITest {
                         .post(Endpoints.AUTH_ENDPOINT)
                         .then()
                         .log().all()
-                        .statusCode(200)
+                        .statusCode(SC_OK)
                         .extract()
                         .as(AuthErrorResponse.class);
         assertThat(response.getReason()).isEqualTo("Bad credentials");
