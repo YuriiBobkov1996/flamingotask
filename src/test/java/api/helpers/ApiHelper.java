@@ -1,10 +1,9 @@
 package api.helpers;
 
 import api.constants.Endpoints;
-import api.models.AuthRequest;
-import api.models.AuthResponse;
-import api.models.BookingRequest;
-import api.models.BookingResponse;
+import api.models.*;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -26,7 +25,7 @@ public class ApiHelper extends BaseHelper {
         return given().spec(requestSpecification)
                 .body(bookingRequest)
                 .when()
-                .post(Endpoints.CREATE_BOOKING_ENDPOINT)
+                .post(Endpoints.BOOKING_ENDPOINT)
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -79,6 +78,45 @@ public class ApiHelper extends BaseHelper {
                 .then()
                 .log().all()
                 .statusCode(404);
+    }
+
+    public List<BookingIdResponse> getAllIds() {
+        return given().spec(requestSpecification)
+                .when()
+                .get(Endpoints.BOOKING_ENDPOINT)
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .jsonPath()
+                .getList("", BookingIdResponse.class);
+    }
+
+    public List<BookingIdResponse> filterBookingsByFirstname(String firstname) {
+        return given().spec(requestSpecification)
+                .queryParam("firstname", firstname)
+                .when()
+                .get(Endpoints.BOOKING_ENDPOINT)
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .jsonPath()
+                .getList("", BookingIdResponse.class);
+    }
+
+    public List<BookingIdResponse> filterBookingsByDates(String checkin, String checkout) {
+        return given().spec(requestSpecification)
+                .queryParam("checkin", checkin)
+                .queryParam("checkout", checkout)
+                .when()
+                .get(Endpoints.BOOKING_ENDPOINT)
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .jsonPath()
+                .getList("", BookingIdResponse.class);
     }
 
     private String getAuthToken() {

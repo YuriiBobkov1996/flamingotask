@@ -2,13 +2,15 @@ package api.testdata;
 
 import api.models.BookingDates;
 import api.models.BookingRequest;
+import com.github.javafaker.Faker;
 
 public class BookingTestData {
+    private static final Faker faker = new Faker();
     public static BookingRequest defaultBooking() {
         return BookingRequest.builder()
-                .firstname("John")
-                .lastname("Dou")
-                .totalprice(100)
+                .firstname(generateUniqueFirstname())
+                .lastname(faker.name().lastName())
+                .totalprice(faker.number().numberBetween(100, 1000))
                 .depositpaid(true)
                 .bookingdates(defaultBookingDates())
                 .additionalneeds("Breakfast")
@@ -24,9 +26,9 @@ public class BookingTestData {
 
     public static BookingRequest updatedBooking() {
         return BookingRequest.builder()
-                .firstname("Jane")
-                .lastname("Smith")
-                .totalprice(250)
+                .firstname(generateUniqueFirstname())
+                .lastname(faker.name().lastName())
+                .totalprice(faker.number().numberBetween(100, 1000))
                 .depositpaid(false)
                 .bookingdates(BookingDates.builder()
                         .checkin("2026-02-01")
@@ -34,6 +36,10 @@ public class BookingTestData {
                         .build())
                 .additionalneeds("Dinner")
                 .build();
+    }
+
+    private static String generateUniqueFirstname() {
+        return "TestUser" + System.currentTimeMillis();
     }
 
     private BookingTestData() {
