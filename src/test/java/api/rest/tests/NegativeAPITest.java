@@ -1,12 +1,12 @@
-package api.tests;
+package api.rest.tests;
 
-import api.constants.Endpoints;
-import api.helpers.ApiHelper;
-import api.models.AuthErrorResponse;
-import api.models.AuthRequest;
-import api.models.BookingRequest;
-import api.models.BookingResponse;
-import api.testdata.BookingTestData;
+import api.rest.constants.Endpoints;
+import api.rest.helpers.ApiHelper;
+import api.rest.models.AuthErrorResponse;
+import api.rest.models.AuthRequest;
+import api.rest.models.BookingRequest;
+import api.rest.models.BookingResponse;
+import api.rest.testdata.BookingTestData;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

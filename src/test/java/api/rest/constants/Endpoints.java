@@ -1,4 +1,4 @@
-package api.constants;
+package api.rest.constants;
 
 public class Endpoints {
     public final static String BASE_URL = "https://restful-booker.herokuapp.com";

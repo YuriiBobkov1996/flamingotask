@@ -1,10 +1,10 @@
-package api.tests;
+package api.rest.tests;
 
-import api.constants.Endpoints;
-import api.helpers.ApiHelper;
-import api.models.BookingRequest;
-import api.models.BookingResponse;
-import api.testdata.BookingTestData;
+import api.rest.constants.Endpoints;
+import api.rest.helpers.ApiHelper;
+import api.rest.models.BookingRequest;
+import api.rest.models.BookingResponse;
+import api.rest.testdata.BookingTestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;

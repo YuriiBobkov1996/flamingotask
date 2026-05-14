@@ -1,7 +1,6 @@
-package api.helpers;
+package api.rest.helpers;
 
-import api.constants.Endpoints;
-import io.qameta.allure.restassured.AllureRestAssured;
+import api.rest.constants.Endpoints;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -23,7 +22,6 @@ public class BaseHelper {
                 .setBaseUri(Endpoints.BASE_URL)
                 .setContentType(ContentType.JSON)
                 .addHeader("Accept", "application/json")
-                .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL);
         requestSpecification = requestSpecBuilder.build();
         return requestSpecification;

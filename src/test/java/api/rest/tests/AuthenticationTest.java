@@ -1,8 +1,8 @@
-package api.tests;
+package api.rest.tests;
 
-import api.helpers.ApiHelper;
-import api.models.AuthRequest;
-import api.models.AuthResponse;
+import api.rest.helpers.ApiHelper;
+import api.rest.models.AuthRequest;
+import api.rest.models.AuthResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

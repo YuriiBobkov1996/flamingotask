@@ -1,4 +1,4 @@
-package api.models;
+package api.rest.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookingResponse {
-    private Integer bookingid;
-    private BookingRequest booking;
+public class BookingDates {
+    private String checkin;
+    private String checkout;
 }

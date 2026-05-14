@@ -1,4 +1,4 @@
-package api.models;
+package api.rest.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    private String token;
+public class AuthErrorResponse {
+    private String reason;
 }
+

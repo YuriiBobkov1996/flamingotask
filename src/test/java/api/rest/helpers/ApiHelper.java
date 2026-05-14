@@ -1,11 +1,8 @@
-package api.helpers;
-
-import api.constants.Endpoints;
-import api.models.*;
+package api.rest.helpers;
+import api.rest.constants.Endpoints;
+import api.rest.models.*;
 import io.restassured.response.Response;
-
 import java.util.List;
-
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper extends BaseHelper {

@@ -1,10 +1,10 @@
-package api.tests;
+package api.rest.tests;
 
-import api.helpers.ApiHelper;
-import api.models.BookingIdResponse;
-import api.models.BookingRequest;
-import api.models.BookingResponse;
-import api.testdata.BookingTestData;
+import api.rest.helpers.ApiHelper;
+import api.rest.models.BookingIdResponse;
+import api.rest.models.BookingRequest;
+import api.rest.models.BookingResponse;
+import api.rest.testdata.BookingTestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

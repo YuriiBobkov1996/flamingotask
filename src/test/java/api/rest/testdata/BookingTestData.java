@@ -1,7 +1,7 @@
-package api.testdata;
+package api.rest.testdata;
 
-import api.models.BookingDates;
-import api.models.BookingRequest;
+import api.rest.models.BookingDates;
+import api.rest.models.BookingRequest;
 import com.github.javafaker.Faker;
 
 public class BookingTestData {
