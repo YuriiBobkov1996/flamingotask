@@ -1,0 +1,15 @@
+query MoviesWithPoster {
+    movies(first: 2) {
+        ...MovieFields
+        moviePoster {
+            url
+            width
+            height
+        }
+    }
+}
+
+fragment MovieFields on Movie {
+    id
+    title
+}
