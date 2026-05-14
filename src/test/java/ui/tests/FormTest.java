@@ -9,7 +9,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class FormTest extends BaseUITest {
 
     @Test
-    void shouldSubmitStudentRegistrationForm() {
+    void SubmitRegistrationFormTest() {
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String email = faker.internet().emailAddress();
@@ -17,6 +17,7 @@ public class FormTest extends BaseUITest {
         String address = faker.address().streetAddress();
         BirthDate birthDate = FormTestUtils.getRandomBirthDate(faker);
         FormPage formPage = new FormPage(page);
+
         formPage.open();
         formPage.fillRequiredFields(firstName, lastName, email, mobile);
         formPage.selectDateOfBirth(birthDate.getMonth(), birthDate.getYear(), birthDate.getDay());

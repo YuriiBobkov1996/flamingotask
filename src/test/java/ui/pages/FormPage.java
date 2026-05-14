@@ -2,13 +2,11 @@ package ui.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+
 import java.nio.file.Path;
 import java.util.Random;
 
-import static config.TestConfig.config;
-
-public class FormPage {
-    private final Page page;
+public class FormPage extends BasePage {
     private final Locator firstNameInput;
     private final Locator lastNameInput;
     private final Locator emailInput;
@@ -28,7 +26,8 @@ public class FormPage {
     private final Locator successModalTitle;
 
     public FormPage(Page page) {
-        this.page = page;
+        super(page);
+
         this.firstNameInput = page.locator("#firstName");
         this.lastNameInput = page.locator("#lastName");
         this.emailInput = page.locator("#userEmail");
@@ -48,8 +47,9 @@ public class FormPage {
         this.successModalTitle = page.locator("#example-modal-sizes-title-lg");
     }
 
-    public void open() {
-        page.navigate(config().baseUrl() + "/automation-practice-form");
+    @Override
+    protected String getPath() {
+        return "/automation-practice-form";
     }
 
     public void fillRequiredFields(String firstName, String lastName, String email, String mobile) {
