@@ -1,8 +1,8 @@
 package api.rest.tests;
 
 import api.rest.helpers.ApiHelper;
-import api.rest.models.AuthRequest;
 import api.rest.models.AuthResponse;
+import api.rest.testdata.AuthTestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +14,7 @@ public class AuthenticationTest {
     @Test
     @DisplayName("Verify user can get auth token")
     public void receiveAuthTokenTest() {
-        AuthRequest authRequest = new AuthRequest("admin", "password123");
-        AuthResponse authResponse = apiHelper.getToken(authRequest);
+        AuthResponse authResponse = apiHelper.getToken(AuthTestData.validAuthRequest());
         assertThat(authResponse.getToken()).isNotNull().isNotBlank();
     }
 }

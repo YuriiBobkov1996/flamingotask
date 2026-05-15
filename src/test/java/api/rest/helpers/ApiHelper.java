@@ -1,9 +1,11 @@
 package api.rest.helpers;
 import api.rest.constants.Endpoints;
 import api.rest.models.*;
+import api.rest.testdata.AuthTestData;
 import io.restassured.response.Response;
 import java.util.List;
 import static io.restassured.RestAssured.given;
+import static org.apache.http.HttpStatus.*;
 
 public class ApiHelper extends BaseHelper {
 
@@ -14,7 +16,7 @@ public class ApiHelper extends BaseHelper {
                 .post(Endpoints.AUTH_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .as(AuthResponse.class);
     }
@@ -26,7 +28,7 @@ public class ApiHelper extends BaseHelper {
                 .post(Endpoints.BOOKING_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .as(BookingResponse.class);
     }
@@ -38,7 +40,7 @@ public class ApiHelper extends BaseHelper {
                 .get(Endpoints.BOOKING_BY_ID_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .as(BookingRequest.class);
     }
@@ -52,7 +54,7 @@ public class ApiHelper extends BaseHelper {
                 .put(Endpoints.BOOKING_BY_ID_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .as(BookingRequest.class);
     }
@@ -65,7 +67,7 @@ public class ApiHelper extends BaseHelper {
                 .delete(Endpoints.BOOKING_BY_ID_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(201);
+                .statusCode(SC_CREATED);
     }
 
     public void verifyBookingNotFound(int id) {
@@ -75,7 +77,7 @@ public class ApiHelper extends BaseHelper {
                 .get(Endpoints.BOOKING_BY_ID_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(404);
+                .statusCode(SC_NOT_FOUND);
     }
 
     public List<BookingIdResponse> getAllIds() {
@@ -84,7 +86,7 @@ public class ApiHelper extends BaseHelper {
                 .get(Endpoints.BOOKING_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .jsonPath()
                 .getList("", BookingIdResponse.class);
@@ -97,7 +99,7 @@ public class ApiHelper extends BaseHelper {
                 .get(Endpoints.BOOKING_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .jsonPath()
                 .getList("", BookingIdResponse.class);
@@ -111,7 +113,7 @@ public class ApiHelper extends BaseHelper {
                 .get(Endpoints.BOOKING_ENDPOINT)
                 .then()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .extract()
                 .jsonPath()
                 .getList("", BookingIdResponse.class);
@@ -141,7 +143,6 @@ public class ApiHelper extends BaseHelper {
     }
 
     private String getAuthToken() {
-        AuthRequest authRequest = new AuthRequest("admin", "password123");
-        return getToken(authRequest).getToken();
+        return getToken(AuthTestData.validAuthRequest()).getToken();
     }
 }
