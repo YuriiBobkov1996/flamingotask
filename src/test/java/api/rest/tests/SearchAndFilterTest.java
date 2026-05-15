@@ -1,6 +1,7 @@
 package api.rest.tests;
 
 import api.rest.helpers.ApiHelper;
+import api.rest.models.BookingDates;
 import api.rest.models.BookingIdResponse;
 import api.rest.models.BookingRequest;
 import api.rest.models.BookingResponse;
@@ -26,7 +27,6 @@ public class SearchAndFilterTest {
     @Test
     @DisplayName("Verify user can filter bookings by firstname")
     public void getBookingsByFirstnameTest() {
-
         BookingRequest bookingToCreate = BookingTestData.defaultBooking();
         BookingResponse createdBookingResponse = apiHelper.createBooking(bookingToCreate);
         List<BookingIdResponse> filteredBookings = apiHelper.filterBookingsByFirstname(bookingToCreate.getFirstname());
@@ -36,10 +36,12 @@ public class SearchAndFilterTest {
     }
 
     @Test
-    @DisplayName("Verify user can filter bookings by dates")
+    @DisplayName("Verify user can filter bookings by check-in and check-out dates")
     public void getBookingsByDatesTest() {
-        List<BookingIdResponse> filteredBookings = apiHelper.filterBookingsByDates("2026-01-01", "2026-01-05");
-        assertThat(filteredBookings).isNotEmpty();
-        assertThat(filteredBookings).allSatisfy(booking -> assertThat(booking.getBookingid()).isNotNull());
+        BookingDates bookingDates = BookingTestData.defaultBookingDates();
+        List<BookingIdResponse> filteredBookings = apiHelper.filterBookingsByDates(bookingDates.getCheckin(), bookingDates.getCheckout());
+        assertThat(filteredBookings).as("Filtered bookings response should not be null").isNotNull();
+        assertThat(filteredBookings).as("Each booking in response should contain booking id").
+                allSatisfy(booking -> assertThat(booking.getBookingid()).isNotNull());
     }
 }

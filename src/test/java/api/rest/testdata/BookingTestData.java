@@ -5,7 +5,16 @@ import api.rest.models.BookingRequest;
 import com.github.javafaker.Faker;
 
 public class BookingTestData {
+
     private static final Faker faker = new Faker();
+    public static final String DEFAULT_CHECKIN_DATE = "2026-01-01";
+    public static final String DEFAULT_CHECKOUT_DATE = "2026-01-05";
+    public static final String UPDATED_CHECKIN_DATE = "2026-02-01";
+    public static final String UPDATED_CHECKOUT_DATE = "2026-02-10";
+
+    private BookingTestData() {
+    }
+
     public static BookingRequest defaultBooking() {
         return BookingRequest.builder()
                 .firstname(generateUniqueFirstname())
@@ -19,8 +28,8 @@ public class BookingTestData {
 
     public static BookingDates defaultBookingDates() {
         return BookingDates.builder()
-                .checkin("2026-01-01")
-                .checkout("2026-01-05")
+                .checkin(DEFAULT_CHECKIN_DATE)
+                .checkout(DEFAULT_CHECKOUT_DATE)
                 .build();
     }
 
@@ -30,18 +39,19 @@ public class BookingTestData {
                 .lastname(faker.name().lastName())
                 .totalprice(faker.number().numberBetween(100, 1000))
                 .depositpaid(false)
-                .bookingdates(BookingDates.builder()
-                        .checkin("2026-02-01")
-                        .checkout("2026-02-10")
-                        .build())
+                .bookingdates(updatedBookingDates())
                 .additionalneeds("Dinner")
+                .build();
+    }
+
+    public static BookingDates updatedBookingDates() {
+        return BookingDates.builder()
+                .checkin(UPDATED_CHECKIN_DATE)
+                .checkout(UPDATED_CHECKOUT_DATE)
                 .build();
     }
 
     private static String generateUniqueFirstname() {
         return "TestUser" + System.currentTimeMillis();
-    }
-
-    private BookingTestData() {
     }
 }
