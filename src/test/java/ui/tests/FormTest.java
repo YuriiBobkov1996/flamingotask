@@ -9,7 +9,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class FormTest extends BaseUITest {
 
     @Test
-    void SubmitRegistrationFormTest() {
+    public void SubmitRegistrationFormTest() {
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String email = faker.internet().emailAddress();
