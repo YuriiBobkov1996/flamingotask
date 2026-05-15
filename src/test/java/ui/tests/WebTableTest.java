@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class WebTableTest extends BaseUITest {
 
     @Test
-    void addNewRecordTest() {
+    public void addNewRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
         webTablePage.open();
@@ -20,7 +20,7 @@ public class WebTableTest extends BaseUITest {
     }
 
     @Test
-    void deleteRecordTest() {
+    public void deleteRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
         webTablePage.open();
@@ -30,7 +30,7 @@ public class WebTableTest extends BaseUITest {
     }
 
     @Test
-    void editRecordTest() {
+    public void editRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
         String updatedFirstName = faker.name().firstName();
@@ -41,7 +41,7 @@ public class WebTableTest extends BaseUITest {
     }
 
     @Test
-    void searchRecordTest() {
+    public void searchRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
         webTablePage.open();
