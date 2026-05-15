@@ -12,7 +12,7 @@ import java.util.Map;
 import static api.graphql.helpers.GraphqlUtils.readGql;
 
 import static io.restassured.RestAssured.given;
-import static org.apache.http.HttpStatus.SC_OK;
+
 
 public class GraphqlClient {
 
@@ -26,15 +26,9 @@ public class GraphqlClient {
         this.url = url;
     }
     public Response execute(GraphqlQuery query) {
-
         return requestSpecification
                 .body(query)
-                .when()
-                .post(url)
-                .then()
-                .statusCode(SC_OK)
-                .extract()
-                .response();
+                .post(url);
     }
 
     public Response executeGql(String fileName) {

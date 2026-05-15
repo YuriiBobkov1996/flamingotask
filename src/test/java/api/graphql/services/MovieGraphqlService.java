@@ -24,4 +24,12 @@ public class MovieGraphqlService {
     public Response getMoviesWithPoster() {
         return graphqlClient.executeGql("moviesWithPoster.graphql");
     }
+
+    public Response getMalformedQuery() {
+        return graphqlClient.executeGql("malformedQuery.graphql");
+    }
+
+    public Response getMoviesWithNonExistentField() {
+        return graphqlClient.executeGql("nonExistentField.graphql");
+    }
 }

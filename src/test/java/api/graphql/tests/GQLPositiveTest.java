@@ -1,8 +1,8 @@
 package api.graphql.tests;
 
 import api.graphql.clients.GraphqlClient;
-import api.graphql.constants.Endpoints;
 import api.graphql.services.MovieGraphqlService;
+import config.TestConfig;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
@@ -10,17 +10,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GQLPositiveTest {
 
-    private final MovieGraphqlService movieGraphqlService = new MovieGraphqlService(new GraphqlClient(Endpoints.GRAPHQL_URL));
+    private final MovieGraphqlService movieGraphqlService = new MovieGraphqlService(new GraphqlClient(TestConfig.config().graphqlUrl()));
 
     @Test
     public void returnMoviesWithPaginationTest() {
         Response response = movieGraphqlService.getMoviesWithPagination(3, 0);
         List<Map<String, Object>> movies = response.jsonPath().getList("data.movies");
         Object errors = response.jsonPath().get("errors");
+        assertThat(response.statusCode()).isEqualTo(SC_OK);
         assertThat(movies).isNotNull().hasSizeLessThanOrEqualTo(3);
         assertThat(movies).allSatisfy(movie -> {
             assertThat(movie.get("id")).isNotNull();
@@ -36,10 +38,12 @@ public class GQLPositiveTest {
         Response response = movieGraphqlService.getMovieById(movieId);
         Map<String, Object> movie = response.jsonPath().getMap("data.movie");
         Object errors = response.jsonPath().get("errors");
+        assertThat(response.statusCode()).isEqualTo(SC_OK);
         assertThat(movie).isNotNull();
         assertThat(movie.get("id")).isEqualTo(movieId);
         assertThat(movie.get("title")).isNotNull();
         assertThat(errors).isNull();
+
     }
 
     @Test
@@ -47,6 +51,7 @@ public class GQLPositiveTest {
         Response response = movieGraphqlService.getMoviesWithPoster();
         List<Map<String, Object>> movies = response.jsonPath().getList("data.movies");
         Object errors = response.jsonPath().get("errors");
+        assertThat(response.statusCode()).isEqualTo(SC_OK);
         assertThat(movies).isNotEmpty();
         assertThat(movies).allSatisfy(movie -> {
             assertThat(movie.get("id")).isNotNull();

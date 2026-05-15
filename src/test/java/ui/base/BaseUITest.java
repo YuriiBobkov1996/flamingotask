@@ -38,21 +38,18 @@ public class BaseUITest {
                     playwright.firefox().launch(
                             new BrowserType.LaunchOptions()
                                     .setHeadless(config().headless())
-                                    .setSlowMo(config().slowMo())
                     );
 
             case "webkit" ->
                     playwright.webkit().launch(
                             new BrowserType.LaunchOptions()
                                     .setHeadless(config().headless())
-                                    .setSlowMo(config().slowMo())
                     );
 
             default ->
                     playwright.chromium().launch(
                             new BrowserType.LaunchOptions()
                                     .setHeadless(config().headless())
-                                    .setSlowMo(config().slowMo())
                     );
         };
     }

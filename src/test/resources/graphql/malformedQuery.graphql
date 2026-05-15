@@ -1,0 +1,6 @@
+query BrokenQuery {
+    movies(
+        id
+        title
+        }
+        }

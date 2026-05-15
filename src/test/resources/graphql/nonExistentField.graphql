@@ -1,0 +1,7 @@
+query NonExistentFieldQuery {
+    movies(first: 1) {
+        id
+        title
+        fakeField
+    }
+}

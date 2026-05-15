@@ -1,6 +1,7 @@
 package ui.pages;
-import static config.TestConfig.config;
+
 import com.microsoft.playwright.Page;
+import config.TestConfig;
 
 public abstract class BasePage {
     protected final Page page;
@@ -11,6 +12,6 @@ public abstract class BasePage {
     protected abstract String getPath();
 
     public void open() {
-        page.navigate(config().baseUrl() + getPath());
+        page.navigate(TestConfig.config().uiBaseUrl() + getPath());
     }
 }
