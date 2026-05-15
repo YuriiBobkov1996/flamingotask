@@ -1,6 +1,7 @@
 package api.graphql.clients;
 
 import api.graphql.models.GraphqlQuery;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
@@ -20,6 +21,7 @@ public class GraphqlClient {
 
     private final RequestSpecification requestSpecification = given()
             .contentType(ContentType.JSON)
+            .filter(new AllureRestAssured())
             .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 
     public GraphqlClient(String url) {
