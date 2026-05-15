@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
- @Tag("api rest")
+ @Tag("rest")
  public class AuthenticationTest {
     private final ApiHelper apiHelper = new ApiHelper();
 

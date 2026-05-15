@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Tag("api rest")
+@Tag("rest")
 public class SearchAndFilterTest {
     private final ApiHelper apiHelper = new ApiHelper();
 

@@ -13,7 +13,7 @@ import static org.apache.http.HttpStatus.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@Tag("api graphql")
+@Tag("graphql")
 public class GQLNegativeTest {
 
     private final MovieGraphqlService movieGraphqlService = new MovieGraphqlService(new GraphqlClient(TestConfig.config().graphqlUrl()));

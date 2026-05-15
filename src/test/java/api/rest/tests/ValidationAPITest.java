@@ -13,7 +13,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Tag("api rest")
+@Tag("rest")
 public class ValidationAPITest {
     private final ApiHelper apiHelper = new ApiHelper();
     @Test

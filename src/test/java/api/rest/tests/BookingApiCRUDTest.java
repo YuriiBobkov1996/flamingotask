@@ -10,13 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Tag("api rest")
+@Tag("rest")
 public class BookingApiCRUDTest {
     private final ApiHelper apiHelper = new ApiHelper();
 
     @Test
     @DisplayName("Verify user can create booking")
-    @Tag("api rest")
     public void сreateBookingTest() {
         BookingRequest bookingRequest = BookingTestData.defaultBooking();
         BookingResponse bookingResponse = apiHelper.createBooking(bookingRequest);

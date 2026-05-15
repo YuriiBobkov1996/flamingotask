@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Tag("api rest")
+@Tag("rest")
 public class NegativeAPITest {
     private final ApiHelper apiHelper = new ApiHelper();
     private static final int NON_EXISTENT_BOOKING_ID = Integer.MAX_VALUE;

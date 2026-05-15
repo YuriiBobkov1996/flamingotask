@@ -13,7 +13,7 @@ import ui.utils.FormTestUtils;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-@Tag("integration")
+@Tag("ui")
 public class ApiUiIntegrationTest extends BaseUITest {
     private final ApiHelper apiHelper = new ApiHelper();
 
