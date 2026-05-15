@@ -4,6 +4,7 @@ import api.graphql.clients.GraphqlClient;
 import api.graphql.services.MovieGraphqlService;
 import config.TestConfig;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -18,6 +19,7 @@ public class GQLPositiveTest {
     private final MovieGraphqlService movieGraphqlService = new MovieGraphqlService(new GraphqlClient(TestConfig.config().graphqlUrl()));
 
     @Test
+    @DisplayName("Should return movies list with pagination")
     public void returnMoviesWithPaginationTest() {
         Response response = movieGraphqlService.getMoviesWithPagination(3, 0);
         List<Map<String, Object>> movies = response.jsonPath().getList("data.movies");
@@ -32,6 +34,7 @@ public class GQLPositiveTest {
     }
 
     @Test
+    @DisplayName("Should retrieve a movie by ID using GraphQL variables")
     public void retrieveMovieByIdTestUsingGraphqlVariables() {
         List<String> movieIds = movieGraphqlService.getMoviesWithPagination(10, 0).jsonPath().getList("data.movies.id");
         String movieId = movieIds.get(new Random().nextInt(movieIds.size()));
@@ -47,6 +50,7 @@ public class GQLPositiveTest {
     }
 
     @Test
+    @DisplayName("Should return movies with nested poster fields using a fragment")
     public void shouldReturnMoviesWithNestedPosterUsingFragment() {
         Response response = movieGraphqlService.getMoviesWithPoster();
         List<Map<String, Object>> movies = response.jsonPath().getList("data.movies");

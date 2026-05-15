@@ -1,5 +1,6 @@
 package ui.tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.base.BaseUITest;
@@ -13,6 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class WebTableTest extends BaseUITest {
 
     @Test
+    @DisplayName("Verify user can add new record")
     public void addNewRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
@@ -22,6 +24,7 @@ public class WebTableTest extends BaseUITest {
     }
 
     @Test
+    @DisplayName("Verify user can delete arecord")
     public void deleteRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
@@ -32,6 +35,7 @@ public class WebTableTest extends BaseUITest {
     }
 
     @Test
+    @DisplayName("Verify user can edit a record")
     public void editRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();
@@ -43,6 +47,7 @@ public class WebTableTest extends BaseUITest {
     }
 
     @Test
+    @DisplayName("Verify user can search a record")
     public void searchRecordTest() {
         WebtablePage webTablePage = new WebtablePage(page);
         WebTableTestData user = WebTableTestUtils.generateUser();

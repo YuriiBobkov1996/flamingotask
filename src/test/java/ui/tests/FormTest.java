@@ -1,4 +1,5 @@
 package ui.tests;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.base.BaseUITest;
@@ -11,6 +12,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class FormTest extends BaseUITest {
 
     @Test
+    @DisplayName("Verify user can submit registration form")
     public void SubmitRegistrationFormTest() {
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
