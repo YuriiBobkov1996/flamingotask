@@ -6,12 +6,14 @@ import api.rest.models.BookingRequest;
 import api.rest.models.BookingResponse;
 import api.rest.testdata.BookingTestData;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("api rest")
 public class ValidationAPITest {
     private final ApiHelper apiHelper = new ApiHelper();
     @Test

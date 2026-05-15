@@ -5,15 +5,18 @@ import api.rest.models.BookingRequest;
 import api.rest.models.BookingResponse;
 import api.rest.testdata.BookingTestData;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("api rest")
 public class BookingApiCRUDTest {
     private final ApiHelper apiHelper = new ApiHelper();
 
     @Test
     @DisplayName("Verify user can create booking")
+    @Tag("api rest")
     public void сreateBookingTest() {
         BookingRequest bookingRequest = BookingTestData.defaultBooking();
         BookingResponse bookingResponse = apiHelper.createBooking(bookingRequest);

@@ -9,11 +9,13 @@ import api.rest.models.BookingResponse;
 import api.rest.testdata.BookingTestData;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("api rest")
 public class NegativeAPITest {
     private final ApiHelper apiHelper = new ApiHelper();
     private static final int NON_EXISTENT_BOOKING_ID = Integer.MAX_VALUE;

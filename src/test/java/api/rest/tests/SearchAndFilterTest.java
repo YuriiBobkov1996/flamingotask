@@ -7,12 +7,14 @@ import api.rest.models.BookingRequest;
 import api.rest.models.BookingResponse;
 import api.rest.testdata.BookingTestData;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Tag("api rest")
 public class SearchAndFilterTest {
     private final ApiHelper apiHelper = new ApiHelper();
 

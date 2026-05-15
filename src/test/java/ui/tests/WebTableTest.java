@@ -1,5 +1,6 @@
 package ui.tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.base.BaseUITest;
 import ui.pages.WebtablePage;
@@ -8,6 +9,7 @@ import ui.utils.WebTableTestUtils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("ui")
 public class WebTableTest extends BaseUITest {
 
     @Test

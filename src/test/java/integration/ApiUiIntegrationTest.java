@@ -4,6 +4,7 @@ import api.rest.helpers.ApiHelper;
 import api.rest.models.BookingRequest;
 import api.rest.models.BookingResponse;
 import api.rest.testdata.BookingTestData;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.base.BaseUITest;
 import ui.pages.FormPage;
@@ -12,6 +13,7 @@ import ui.utils.FormTestUtils;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+@Tag("integration")
 public class ApiUiIntegrationTest extends BaseUITest {
     private final ApiHelper apiHelper = new ApiHelper();
 

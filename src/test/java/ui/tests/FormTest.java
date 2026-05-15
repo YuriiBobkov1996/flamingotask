@@ -1,4 +1,5 @@
 package ui.tests;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ui.base.BaseUITest;
 import ui.pages.FormPage;
@@ -6,6 +7,7 @@ import ui.utils.BirthDate;
 import ui.utils.FormTestUtils;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+@Tag("ui")
 public class FormTest extends BaseUITest {
 
     @Test
