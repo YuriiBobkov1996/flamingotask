@@ -1,0 +1,63 @@
+name: Allure Report
+
+run-name: ${{ github.actor }} is running tests and creating Allure report 🚀
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  autotests:
+    name: Run tests and generate Allure Report
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Install Playwright browsers
+        run: mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps"
+
+      - name: Run tests
+        run: mvn clean test -Dheadless=true
+
+      - name: Setup Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@v1.11
+        if: always()
+        with:
+          allure_results: target/allure-results
+          allure_history: allure-history
+
+      - name: Publish Allure Report
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
