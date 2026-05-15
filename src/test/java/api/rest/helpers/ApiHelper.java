@@ -21,6 +21,16 @@ public class ApiHelper extends BaseHelper {
                 .as(AuthResponse.class);
     }
 
+    public Response getTokenResponse(AuthRequest authRequest) {
+        return given().spec(requestSpecification)
+                .body(authRequest)
+                .when()
+                .post(Endpoints.AUTH_ENDPOINT)
+                .then()
+                .extract()
+                .response();
+    }
+
     public BookingResponse createBooking(BookingRequest bookingRequest) {
         return given().spec(requestSpecification)
                 .body(bookingRequest)
